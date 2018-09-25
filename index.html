@@ -1,40 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <style>
-            table {
-                border-collapse: collapse;
-                border: 2px black solid;
-                font: 12px sans-serif;
-            }
+<html>
 
-            td {
-                border: 1px black solid;
-                padding: 5px;
-            }
-        </style>
-    </head>
-    <body>
-        <!-- <script src="http://d3js.org/d3.v3.min.js"></script> -->
-        <script src="https://d3js.org/d3.v5.min.js"></script>
+<head>
+  <script data-require="d3@3.5.3" data-semver="3.5.3" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.js"></script>
+</head>
 
-        <script type="text/javascript"charset="utf-8">
-            d3.text("data.csv", function(data) {
-                var parsedCSV = d3.csv.parseRows(data);
+<body>
+  <input type="file" onchange="loadFile()" />
 
-                var container = d3.select("body")
-                    .append("table")
+  <script>
+    var reader = new FileReader();  
+    
+    function loadFile() {      
+      var file = document.querySelector('input[type=file]').files[0];      
+      reader.addEventListener("load", parseFile, false);
+      if (file) {
+        reader.readAsText(file);
+      }      
+    }
+    
+    function parseFile(){
+      var doesColumnExist = false;
+      var data = d3.csv.parse(reader.result, function(d){
+        doesColumnExist = d.hasOwnProperty("someColumn");
+        return d;   
+      });
+      console.log(doesColumnExist);
+    }
+  </script>
+</body>
 
-                    .selectAll("tr")
-                        .data(parsedCSV).enter()
-                        .append("tr")
-
-                    .selectAll("td")
-                        .data(function(d) { return d; }).enter()
-                        .append("td")
-                        .text(function(d) { return d; });
-            });
-        </script>
-    </body>
 </html>
