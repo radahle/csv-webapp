@@ -22,7 +22,7 @@
     function parseFile(){
       var doesColumnExist = false;
       var data = d3.csv.parse(reader.result, function(d){
-        doesColumnExist = d.hasOwnProperty("someColumn");
+        doesColumnExist = d.hasOwnProperty("sepal_width");
         return d;   
       });
       console.log(doesColumnExist);
