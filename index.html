@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <meta charset='utf-8'>
 <html>
-<head>
+  <head>
     <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <link rel='stylesheet' href='style.css'>
-</head>
-<body>
-<h1>heyo</h1>
-<script type='text/javascript' src='script.js'></script>
-<input type="file" id="myFile">
-<button onclick="myFunction()">Try it</button>
-<script>
-    function myFunction(){
-        var test = document.getElementById("myFile").files[0];
-        doFunction(test);
-    }
-</script>
-</body>
+  </head>
+  <body>
+  	<h1>heyo</h1>
+    <script type='text/javascript' src='script.js'></script>
+    <input type="file" id="myFile">
+    <button onclick="myFunction()">Try it</button>
+
+    <script>
+    	function myFunction(){
+    		var test = document.getElementById("myFile").files[0];
+    		doFunction(test);
+    	}
+    </script>
+  </body>
 </html>
