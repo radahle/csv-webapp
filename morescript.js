@@ -2,7 +2,7 @@ function readURL(url){
     d3.csv(url.toString(),function (data){
 // CSV section
 
-  var body = d3.select('body');
+  var body = d3.select('#scatter');
   var selectData = d3.keys(data[0]);
 
 

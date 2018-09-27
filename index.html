@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <meta charset='utf-8'>
 <html>
-<head>
-  <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-  <link rel='stylesheet' href='style.css'>
-</head>
-<body>
-<h1>CSV file reader</h1>
-<script type='text/javascript' src='script.js'></script>
-<script type='text/javascript' src='morescript.js'></script>
-<input type="file" id="myFile">
-<button onclick="fileFunction()">Use file</button>
-<br />
-<input type="text" id="url" name="url" />
-<button onclick="urlFunction()">Use URL</button><!--Annen funksjon når klar!-->
-<br />
-<script>
-    function fileFunction(){
-        cleanUp();
-        var file = document.getElementById("myFile").files[0];
-        readFile(file);
-    }
-    function urlFunction(){
-        cleanUp();
-        var Url = document.getElementById("url").value;
-        readURL(Url);
-    }
-</script>
-<div>
-  <div id="scatter"></div>
-</div>
-</body>
+    <head>
+      <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+      <link rel='stylesheet' href='style.css'>
+    </head>
+    <body>
+        <h1>CSV file reader</h1>
+        <script type='text/javascript' src='script.js'></script>
+        <script type='text/javascript' src='morescript.js'></script>
+        <input type="file" id="myFile">
+        <button onclick="fileFunction()">Use file</button>
+        <br />
+        <input type="text" id="url" name="url" />
+        <button onclick="urlFunction()">Use URL</button><!--Annen funksjon når klar!-->
+        <br />
+        <script>
+            function fileFunction(){
+                cleanUp();
+                var file = document.getElementById("myFile").files[0];
+                readFile(file);
+            }
+            function urlFunction(){
+                cleanUp();
+                var Url = document.getElementById("url").value;
+                readURL(Url);
+            }
+        </script>
+        <div>
+          <div id="scatter"></div>
+        </div>
+    </body>
 </html>
