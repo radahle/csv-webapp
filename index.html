@@ -1,33 +1,13 @@
 <!DOCTYPE html>
+<meta charset='utf-8'>
 <html>
-
-<head>
-  <script data-require="d3@3.5.3" data-semver="3.5.3" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.js"></script>
-</head>
-
-<body>
-  <input type="file" onchange="loadFile()" />
-
-  <script>
-    var reader = new FileReader();  
-    
-    function loadFile() {      
-      var file = document.querySelector('input[type=file]').files[0];      
-      reader.addEventListener("load", parseFile, false);
-      if (file) {
-        reader.readAsText(file);
-      }      
-    }
-    
-    function parseFile(){
-      var doesColumnExist = false;
-      var data = d3.csv.parse(reader.result, function(d){
-        doesColumnExist = d.hasOwnProperty("sepal_width");
-        return d;   
-      });
-      console.log(doesColumnExist);
-    }
-  </script>
-</body>
-
+  <head>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <link rel='stylesheet' href='style.css'>
+  </head>
+  <body>
+  	<h1>heyo</h1>
+  	<script>console.log("looooooooooooooooooooooooooooooooooogg");</script>
+    <script type='text/javascript' src='script.js'></script>
+  </body>
 </html>
