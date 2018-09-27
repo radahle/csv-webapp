@@ -1,5 +1,5 @@
 function readURL(url){
-    d3.csv(url.toString(),function (data)
+    d3.csv(url.toString(),function (data){
 // CSV section
 
   var body = d3.select('body');
@@ -186,4 +186,5 @@ function readURL(url){
       .delay(function (d,i) { return i*10})
         .attr('cx',function (d) { return xScale(d[value]) })
   }
-};
+});
+}
