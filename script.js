@@ -41,7 +41,7 @@ d3.csv('data.csv',function (data) {
   var w = 500 - margin.left - margin.right
   var formatPercent = d3.format('.2%')
   // Scales
-  var colorScale = d3.scale.category20()
+/*  var colorScale = d3.scale.category20()
   var xScale = d3.scale.linear()
     .domain([
       d3.min([0,d3.min(data,function (d) { return d['Annualized Return'] })]),
@@ -53,7 +53,7 @@ d3.csv('data.csv',function (data) {
       d3.min([0,d3.min(data,function (d) { return d['Annualized Return'] })]),
       d3.max([0,d3.max(data,function (d) { return d['Annualized Return'] })])
       ])
-    .range([h,0])
+    .range([h,0])*/
   // SVG
   var svg = body.append('svg')
       .attr('height',h + margin.top + margin.bottom)
