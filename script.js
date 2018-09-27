@@ -1,14 +1,14 @@
-d3.csv('data.csv',function (data) {
+function doFunction(file){
+    console.log(file);
+    var reader = new FileReader();
+    reader.onload = function(event){
+        console.log(event.target.result);
+        d3.csv(event.target.result,function (data) {
 // CSV section
-    var headerNames = d3.keys(data[0]);
-    console.log(headerNames);
-  var body = d3.select('body');
-  var selectData = [ { "text" : "Annualized Returnasdasdasdasd" },
-                     { "text" : "Annualized Standard Deviation" },
-                     { "text" : "Maximum Drawdown" },
-                   ];
 
-    console.log(typeof(selectData));
+  var body = d3.select('body');
+  var selectData = d3.keys(data[0]);
+
   // Select X-axis Variable
   var span = body.append('span')
     .text('Select X-Axis variable: ');
@@ -19,8 +19,8 @@ d3.csv('data.csv',function (data) {
       .data(selectData)
       .enter()
     .append('option')
-      .attr('value', function (d) { return d.text })
-      .text(function (d) { return d.text ;});
+      .attr('value', function (d) { return d })
+      .text(function (d) { return d ;});
   body.append('br');
 
   // Select Y-axis Variable
@@ -33,8 +33,8 @@ d3.csv('data.csv',function (data) {
       .data(selectData)
       .enter()
     .append('option')
-      .attr('value', function (d) { return d.text })
-      .text(function (d) { return d.text ;});
+      .attr('value', function (d) { return d })
+      .text(function (d) { return d ;});
   body.append('br');
 
   // Variables
@@ -42,7 +42,8 @@ d3.csv('data.csv',function (data) {
   var margin = { top: 50, right: 50, bottom: 50, left: 50 };
   var h = 500 - margin.top - margin.bottom;
   var w = 500 - margin.left - margin.right;
-  var formatPercent = d3.format('.2%');
+  //var formatPercent = d3.format('.2%');
+
   // Scales
   var colorScale = d3.scale.category20();
   var xScale = d3.scale.linear()
@@ -57,24 +58,28 @@ d3.csv('data.csv',function (data) {
       d3.max([0,d3.max(data,function (d) { return d['Annualized Return'] })])
       ])
     .range([h,0]);
+
   // SVG
   var svg = body.append('svg')
       .attr('height',h + margin.top + margin.bottom)
       .attr('width',w + margin.left + margin.right)
     .append('g')
       .attr('transform','translate(' + margin.left + ',' + margin.top + ')');
+
   // X-axis
   var xAxis = d3.svg.axis()
     .scale(xScale)
-    .tickFormat(formatPercent)
+    //.tickFormat(formatPercent)
     .ticks(5)
     .orient('bottom');
+
   // Y-axis
   var yAxis = d3.svg.axis()
     .scale(yScale)
-    .tickFormat(formatPercent)
+    //.tickFormat(formatPercent)
     .ticks(5)
     .orient('left');
+
   // Circles
   var circles = svg.selectAll('circle')
       .data(data)
@@ -101,10 +106,10 @@ d3.csv('data.csv',function (data) {
           .attr('stroke-width',1)
       })
     .append('title') // Tooltip
-      .text(function (d) { return d.variable +
+     /* .text(function (d) { return d.variable +
                            '\nReturn: ' + formatPercent(d['Annualized Return']) +
                            '\nStd. Dev.: ' + formatPercent(d['Annualized Standard Deviation']) +
-                           '\nMax Drawdown: ' + formatPercent(d['Maximum Drawdown']) });
+                           '\nMax Drawdown: ' + formatPercent(d['Maximum Drawdown']) });*/
   // X-axis
   svg.append('g')
       .attr('class','axis')
@@ -117,7 +122,7 @@ d3.csv('data.csv',function (data) {
       .attr('x',w)
       .attr('dy','.71em')
       .style('text-anchor','end')
-      .text('Annualized Return');
+      .text('X Axis');
   // Y-axis
   svg.append('g')
       .attr('class','axis')
@@ -130,7 +135,7 @@ d3.csv('data.csv',function (data) {
       .attr('y',5)
       .attr('dy','.71em')
       .style('text-anchor','end')
-      .text('Annualized Return');
+      .text('Y Axis');
 
   function yChange() {
     var value = this.value; // get the new y value
@@ -171,3 +176,7 @@ d3.csv('data.csv',function (data) {
         .attr('cx',function (d) { return xScale(d[value]) })
   }
 });
+    }
+    reader.readAsDataURL(file);
+
+}
