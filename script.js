@@ -1,5 +1,7 @@
 d3.csv('data.csv',function (data) {
 // CSV section
+    var headerNames = d3.keys(data[0])
+    console.log(headerNames);
   var body = d3.select('body')
   var selectData = [ { "text" : "Annualized Return" },
                      { "text" : "Annualized Standard Deviation" },
