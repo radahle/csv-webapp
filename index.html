@@ -9,8 +9,11 @@
   	<h1>heyo</h1>
     <script type='text/javascript' src='script.js'></script>
     <input type="file" id="myFile">
-    <button onclick="myFunction()">Try it</button>
-
+    <button onclick="myFunction()">Use file</button>
+    <br />
+    <input type="text" id="url" name="url" />
+    <button onclick="myFunction()">Use URL</button><!--Annen funksjon når klar!-->
+    <br />
     <script>
     	function myFunction(){
     		var test = document.getElementById("myFile").files[0];
