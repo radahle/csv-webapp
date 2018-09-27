@@ -9,6 +9,13 @@ function doFunction(file){
   var body = d3.select('body');
   var selectData = d3.keys(data[0]);
 
+
+  var newData = data.filter(filterCriteria);
+
+  function filterCriteria(d){
+    return d.species=== "setosa";
+  }
+
   // Select X-axis Variable
   var span = body.append('span')
     .text('Select X-Axis variable: ');
@@ -40,22 +47,30 @@ function doFunction(file){
   // Variables
   var body = d3.select('body');
   var margin = { top: 50, right: 50, bottom: 50, left: 50 };
-  var h = 500 - margin.top - margin.bottom;
-  var w = 500 - margin.left - margin.right;
+  var h = 1000 - margin.top - margin.bottom;
+  var w = 1000 - margin.left - margin.right;
   //var formatPercent = d3.format('.2%');
+
+  var yelement=   d3.select('select#ySelect')[0]['0'].value;
+  var xelement=   d3.select('select#xSelect')[0]['0'].value;
+
+
+        console.log(xelement);
+
 
   // Scales
   var colorScale = d3.scale.category20();
   var xScale = d3.scale.linear()
     .domain([
-      d3.min([0,d3.min(data,function (d) { return d['Annualized Return'] })]),
-      d3.max([0,d3.max(data,function (d) { return d['Annualized Return'] })])
+      d3.min([0,d3.min(data,function (d) { return d[xelement] })]),
+      d3.max([0,d3.max(data,function (d) { return d[xelement] })])
       ])
     .range([0,w]);
+
   var yScale = d3.scale.linear()
     .domain([
-      d3.min([0,d3.min(data,function (d) { return d['Annualized Return'] })]),
-      d3.max([0,d3.max(data,function (d) { return d['Annualized Return'] })])
+      d3.min([0,d3.min(data,function (d) { return d[yelement] })]),
+      d3.max([0,d3.max(data,function (d) { return d[yelement] })])
       ])
     .range([h,0]);
 
@@ -85,8 +100,8 @@ function doFunction(file){
       .data(data)
       .enter()
     .append('circle')
-      .attr('cx',function (d) { return xScale(d['Annualized Return']) })
-      .attr('cy',function (d) { return yScale(d['Annualized Return']) })
+      .attr('cx',function (d) { return xScale(d[xelement]) })
+      .attr('cy',function (d) { return yScale(d[yelement]) })
       .attr('r','10')
       .attr('stroke','black')
       .attr('stroke-width',1)
@@ -152,7 +167,7 @@ function doFunction(file){
       .text(value);
     d3.selectAll('circle') // move the circles
       .transition().duration(1000)
-      .delay(function (d,i) { return i*100})
+      .delay(function (d,i) { return i*10})
         .attr('cy',function (d) { return yScale(d[value]) })
   }
 
@@ -172,7 +187,7 @@ function doFunction(file){
       .text(value);
     d3.selectAll('circle') // move the circles
       .transition().duration(1000)
-      .delay(function (d,i) { return i*100})
+      .delay(function (d,i) { return i*10})
         .attr('cx',function (d) { return xScale(d[value]) })
   }
 });
