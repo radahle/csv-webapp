@@ -7,7 +7,15 @@
   </head>
   <body>
   	<h1>heyo</h1>
-  	<script>console.log("jajajajaja");</script>
     <script type='text/javascript' src='script.js'></script>
+    <input type="file" id="myFile">
+    <button onclick="myFunction()">Try it</button>
+
+    <script>
+    	function myFunction(){
+    		var test = document.getElementById("myFile").files[0];
+    		doFunction(test);
+    	}
+    </script>
   </body>
 </html>
