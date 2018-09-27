@@ -8,6 +8,7 @@ d3.csv('data.csv',function (data) {
                      { "text" : "Maximum Drawdown" },
                    ];
 
+    console.log(typeof(selectData));
   // Select X-axis Variable
   var span = body.append('span')
     .text('Select X-Axis variable: ');
