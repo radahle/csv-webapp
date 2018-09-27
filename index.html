@@ -6,7 +6,7 @@
     <link rel='stylesheet' href='style.css'>
   </head>
   <body>
-  	<h1>heyo</h1>
+  	<h1>CSV file reader</h1>
     <script type='text/javascript' src='script.js'></script>
     <input type="file" id="myFile">
     <button onclick="myFunction()">Use file</button>
@@ -15,10 +15,13 @@
     <button onclick="myFunction()">Use URL</button><!--Annen funksjon når klar!-->
     <br />
     <script>
-    	function myFunction(){
-    		var test = document.getElementById("myFile").files[0];
-    		doFunction(test);
+    	function fileFunction(){
+    		var file = document.getElementById("myFile").files[0];
+    		doFunction(file);
     	}
+      function urlFunction(){
+        fileFunction();
+      }
     </script>
   </body>
 </html>
