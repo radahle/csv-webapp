@@ -1,7 +1,5 @@
-function readFile(file){
-    var reader = new FileReader();
-    reader.onload = function(event){
-        d3.csv(event.target.result,function (data) {
+function readURL(url){
+    d3.csv(url.toString(),function (data)
 // CSV section
 
   var body = d3.select('body');
