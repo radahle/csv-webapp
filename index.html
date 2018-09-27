@@ -16,6 +16,8 @@
     <br />
     <script>
     	function fileFunction(){
+            d3.select('#scatter').remove();
+            d3.select('div').append('div').attr('id','scatter')
     		var file = document.getElementById("myFile").files[0];
     		doFunction(file);
     	}
@@ -23,5 +25,8 @@
         fileFunction();
       }
     </script>
+    <div>
+      <div id="scatter"></div>
+    </div>
   </body>
 </html>
