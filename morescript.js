@@ -186,8 +186,4 @@ function readURL(url){
       .delay(function (d,i) { return i*10})
         .attr('cx',function (d) { return xScale(d[value]) })
   }
-});
-    }
-    reader.readAsDataURL(file);
-
-}
+};
