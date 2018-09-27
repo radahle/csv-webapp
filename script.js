@@ -47,8 +47,8 @@ function doFunction(file){
   // Variables
   var body = d3.select('body');
   var margin = { top: 50, right: 50, bottom: 50, left: 50 };
-  var h = 1000 - margin.top - margin.bottom;
-  var w = 1000 - margin.left - margin.right;
+  var h = 600 - margin.top - margin.bottom;
+  var w = 600 - margin.left - margin.right;
   //var formatPercent = d3.format('.2%');
 
   var yelement=   d3.select('select#ySelect')[0]['0'].value;
