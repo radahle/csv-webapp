@@ -1,10 +1,8 @@
-function readFile(file){
-    var reader = new FileReader();
-    reader.onload = function(event){
-        d3.csv(event.target.result,function (data) {
+function readURL(url){
+    d3.csv(url.toString(),function (data){
 // CSV section
 
-  var body = d3.select('#scatter');
+  var body = d3.select('body');
   var selectData = d3.keys(data[0]);
 
 
@@ -43,7 +41,7 @@ function readFile(file){
   body.append('br');
 
   // Variables
- // var body = d3.select('body');
+  var body = d3.select('body');
   var margin = { top: 50, right: 50, bottom: 50, left: 50 };
   var h = 600 - margin.top - margin.bottom;
   var w = 600 - margin.left - margin.right;
@@ -189,12 +187,4 @@ function readFile(file){
         .attr('cx',function (d) { return xScale(d[value]) })
   }
 });
-    }
-    reader.readAsDataURL(file);
-
-}
-
-function cleanUp() {
-    d3.select('#scatter').remove();
-    d3.select('div').append('div').attr('id','scatter')
 }
