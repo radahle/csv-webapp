@@ -1,16 +1,16 @@
 d3.csv('data.csv',function (data) {
 // CSV section
-    var headerNames = d3.keys(data[0])
+    var headerNames = d3.keys(data[0]);
     console.log(headerNames);
-  var body = d3.select('body')
-  var selectData = [ { "text" : "Annualized Return" },
+  var body = d3.select('body');
+  var selectData = [ { "text" : "Annualized Returnasdasdasdasd" },
                      { "text" : "Annualized Standard Deviation" },
                      { "text" : "Maximum Drawdown" },
-                   ]
+                   ];
 
   // Select X-axis Variable
   var span = body.append('span')
-    .text('Select X-Axis variable: ')
+    .text('Select X-Axis variable: ');
   var yInput = body.append('select')
       .attr('id','xSelect')
       .on('change',xChange)
@@ -19,12 +19,12 @@ d3.csv('data.csv',function (data) {
       .enter()
     .append('option')
       .attr('value', function (d) { return d.text })
-      .text(function (d) { return d.text ;})
-  body.append('br')
+      .text(function (d) { return d.text ;});
+  body.append('br');
 
   // Select Y-axis Variable
   var span = body.append('span')
-      .text('Select Y-Axis variable: ')
+      .text('Select Y-Axis variable: ');
   var yInput = body.append('select')
       .attr('id','ySelect')
       .on('change',yChange)
@@ -33,47 +33,47 @@ d3.csv('data.csv',function (data) {
       .enter()
     .append('option')
       .attr('value', function (d) { return d.text })
-      .text(function (d) { return d.text ;})
-  body.append('br')
+      .text(function (d) { return d.text ;});
+  body.append('br');
 
   // Variables
-  var body = d3.select('body')
-  var margin = { top: 50, right: 50, bottom: 50, left: 50 }
-  var h = 500 - margin.top - margin.bottom
-  var w = 500 - margin.left - margin.right
-  var formatPercent = d3.format('.2%')
+  var body = d3.select('body');
+  var margin = { top: 50, right: 50, bottom: 50, left: 50 };
+  var h = 500 - margin.top - margin.bottom;
+  var w = 500 - margin.left - margin.right;
+  var formatPercent = d3.format('.2%');
   // Scales
-  var colorScale = d3.scale.category20()
+  var colorScale = d3.scale.category20();
   var xScale = d3.scale.linear()
     .domain([
       d3.min([0,d3.min(data,function (d) { return d['Annualized Return'] })]),
       d3.max([0,d3.max(data,function (d) { return d['Annualized Return'] })])
       ])
-    .range([0,w])
+    .range([0,w]);
   var yScale = d3.scale.linear()
     .domain([
       d3.min([0,d3.min(data,function (d) { return d['Annualized Return'] })]),
       d3.max([0,d3.max(data,function (d) { return d['Annualized Return'] })])
       ])
-    .range([h,0])
+    .range([h,0]);
   // SVG
   var svg = body.append('svg')
       .attr('height',h + margin.top + margin.bottom)
       .attr('width',w + margin.left + margin.right)
     .append('g')
-      .attr('transform','translate(' + margin.left + ',' + margin.top + ')')
+      .attr('transform','translate(' + margin.left + ',' + margin.top + ')');
   // X-axis
   var xAxis = d3.svg.axis()
     .scale(xScale)
     .tickFormat(formatPercent)
     .ticks(5)
-    .orient('bottom')
+    .orient('bottom');
   // Y-axis
   var yAxis = d3.svg.axis()
     .scale(yScale)
     .tickFormat(formatPercent)
     .ticks(5)
-    .orient('left')
+    .orient('left');
   // Circles
   var circles = svg.selectAll('circle')
       .data(data)
@@ -103,7 +103,7 @@ d3.csv('data.csv',function (data) {
       .text(function (d) { return d.variable +
                            '\nReturn: ' + formatPercent(d['Annualized Return']) +
                            '\nStd. Dev.: ' + formatPercent(d['Annualized Standard Deviation']) +
-                           '\nMax Drawdown: ' + formatPercent(d['Maximum Drawdown']) })
+                           '\nMax Drawdown: ' + formatPercent(d['Maximum Drawdown']) });
   // X-axis
   svg.append('g')
       .attr('class','axis')
@@ -116,7 +116,7 @@ d3.csv('data.csv',function (data) {
       .attr('x',w)
       .attr('dy','.71em')
       .style('text-anchor','end')
-      .text('Annualized Return')
+      .text('Annualized Return');
   // Y-axis
   svg.append('g')
       .attr('class','axis')
@@ -129,21 +129,21 @@ d3.csv('data.csv',function (data) {
       .attr('y',5)
       .attr('dy','.71em')
       .style('text-anchor','end')
-      .text('Annualized Return')
+      .text('Annualized Return');
 
   function yChange() {
-    var value = this.value // get the new y value
+    var value = this.value; // get the new y value
     yScale // change the yScale
       .domain([
         d3.min([0,d3.min(data,function (d) { return d[value] })]),
         d3.max([0,d3.max(data,function (d) { return d[value] })])
-        ])
-    yAxis.scale(yScale) // change the yScale
+        ]);
+    yAxis.scale(yScale); // change the yScale
     d3.select('#yAxis') // redraw the yAxis
       .transition().duration(1000)
-      .call(yAxis)
+      .call(yAxis);
     d3.select('#yAxisLabel') // change the yAxisLabel
-      .text(value)    
+      .text(value);
     d3.selectAll('circle') // move the circles
       .transition().duration(1000)
       .delay(function (d,i) { return i*100})
@@ -151,22 +151,22 @@ d3.csv('data.csv',function (data) {
   }
 
   function xChange() {
-    var value = this.value // get the new x value
+    var value = this.value; // get the new x value
     xScale // change the xScale
       .domain([
         d3.min([0,d3.min(data,function (d) { return d[value] })]),
         d3.max([0,d3.max(data,function (d) { return d[value] })])
-        ])
-    xAxis.scale(xScale) // change the xScale
+        ]);
+    xAxis.scale(xScale); // change the xScale
     d3.select('#xAxis') // redraw the xAxis
       .transition().duration(1000)
-      .call(xAxis)
+      .call(xAxis);
     d3.select('#xAxisLabel') // change the xAxisLabel
       .transition().duration(1000)
-      .text(value)
+      .text(value);
     d3.selectAll('circle') // move the circles
       .transition().duration(1000)
       .delay(function (d,i) { return i*100})
         .attr('cx',function (d) { return xScale(d[value]) })
   }
-})
+});
