@@ -34,9 +34,9 @@ for(var element of data1){
 }
 
 
-
-  //console.log(stringColumn);
 var dataTest = [];
+if(stringColumn.length>0){
+
   for(var column of stringColumn){
     for(var value of column.values){
       var tempData = data1.filter(function(d){
@@ -47,6 +47,11 @@ var dataTest = [];
       
     }
   }
+  //console.log(stringColumn);
+}else{
+	dataTest.push(data);
+}
+
 
 
 
