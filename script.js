@@ -190,6 +190,8 @@ for(var i in dataTest){
                            '\nReturn: ' + formatPercent(d['Annualized Return']) +
                            '\nStd. Dev.: ' + formatPercent(d['Annualized Standard Deviation']) +
                            '\nMax Drawdown: ' + formatPercent(d['Maximum Drawdown']) });*/
+  
+           console.log();
   // X-axis
   svg.append('g')
       .attr('class','axis')
@@ -202,7 +204,7 @@ for(var i in dataTest){
       .attr('x',w)
       .attr('dy','.71em')
       .style('text-anchor','end')
-      .text('X Axis');
+      .text(d3.select('select#xSelect')[0]['0'].value);
   // Y-axis
   svg.append('g')
       .attr('class','axis')
@@ -215,7 +217,7 @@ for(var i in dataTest){
       .attr('y',5)
       .attr('dy','.71em')
       .style('text-anchor','end')
-      .text('Y Axis');
+      .text(d3.select('select#ySelect')[0]['0'].value);
 
 
   // draw legend
