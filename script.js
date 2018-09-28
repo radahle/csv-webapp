@@ -5,56 +5,57 @@ function readFile(file){
 // CSV section
 
   var body = d3.select('#scatter');
-var selectData = [];
+	var selectData = [];
    //var data = data1.filter(filterCriteria);
   var data = data1;
   var stringColumn = [];
 
-
-
-
-
-   
-// check which column is a string and not a number
    for(var element in data1[1]){
            if( data[1].hasOwnProperty(element)) {
                var propValue = data[1][element];
                if(isNaN(propValue)){
-                  stringColumn.push({name:element,values:[]});
-                                  } else{
-                                    selectData.push(element);
-                                  }
+                  	stringColumn.push({name:element,values:[]});
+
+                } else{
+                	selectData.push(element);
+                }
             }
+
+
   }
-//console.log(stringColumn);
-  for(var element of data1){
+
+for(var element of data1){
     for(var column of stringColumn){
       
       if(column.values.indexOf(element[column.name])==-1){
         column.values.push(element[column.name]);
       }
-      
-
-
-    }
-    
   }
+}
+
+
 
   //console.log(stringColumn);
 var dataTest = [];
   for(var column of stringColumn){
     for(var value of column.values){
       var tempData = data1.filter(function(d){
-        return d[column.name]===value;
+        return d[column.name]==value;
       });
       //console.log(data1);
       dataTest.push(tempData);
       
     }
   }
+
+
+
+   
+// check which column is a string and not a number
+
   
 
-  console.log(selectData);
+  //console.log(selectData);
   
 
   //var body = d3.select('body');
@@ -155,7 +156,7 @@ for(var i in dataTest){
           .transition()
           .duration(500)
           .attr('r',20)
-          .attr('stroke-width',3)
+          
       })
       .on('mouseout', function () {
         d3.select(this)
@@ -164,7 +165,19 @@ for(var i in dataTest){
           .attr('r',10)
           .attr('stroke-width',1)
       })
-    .append('title') //
+    .append('title') 
+    .text(function (d) {
+    	
+    	var tooltip="";
+    	for(var element of selectData){
+    		tooltip+=element;
+    		tooltip+=": \t";
+    		tooltip+=d[element];
+    		tooltip+="\n";
+    	}
+
+    	return tooltip;
+    });
 }
 
   // Tooltip
@@ -201,7 +214,8 @@ for(var i in dataTest){
 
 
   // draw legend
-  
+  if(stringColumn.length>0){
+
   var legend = svg.selectAll(".legend")
       .data(stringColumn[0].values)
     .enter().append("g")
@@ -222,6 +236,8 @@ for(var i in dataTest){
       .attr("dy", ".35em")
       .style("text-anchor", "end")
       .text(function(d) { return d;})
+  }
+
 
   function yChange() {
     var value = this.value; // get the new y value
